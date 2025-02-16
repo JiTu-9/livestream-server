@@ -5,7 +5,7 @@ const { execSync } = require('child_process');
 function getFfmpegPath() {
   try {
     // Adjust the command as needed to fetch the ffmpeg path
-    const ffmpegPath = execSync('where ffmpeg').toString().trim();
+    const ffmpegPath = execSync('which ffmpeg').toString().trim();
     return ffmpegPath;
   } catch (error) {
     console.error('Error fetching ffmpeg path:', error);
@@ -32,7 +32,7 @@ const config = {
     allow_origin: '*'
   },
   trans: {
-    ffmpeg: "/usr/bin/ffmpeg", // Dynamically set the ffmpeg path
+    ffmpeg: ffmpegPath, // Dynamically set the ffmpeg path
     tasks: [
       {
         app: 'live',
