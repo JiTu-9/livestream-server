@@ -29,7 +29,8 @@ const config = {
   http: {
     port: 8000,
     mediaroot: 'livestream',
-    allow_origin: '*'
+    allow_origin: '*',
+    listen : '0.0.0.0'
   },
   trans: {
     ffmpeg: ffmpegPath,
