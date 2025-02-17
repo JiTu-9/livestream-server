@@ -4,7 +4,6 @@ const { execSync } = require('child_process');
 // Function to get the ffmpeg path dynamically
 function getFfmpegPath() {
   try {
-    // Adjust the command as needed to fetch the ffmpeg path
     const ffmpegPath = execSync('which ffmpeg').toString().trim();
     return ffmpegPath;
   } catch (error) {
@@ -20,6 +19,7 @@ if (!ffmpegPath) {
   process.exit(1);
 }
 
+// Node Media Server Configuration
 const config = {
   rtmp: {
     port: 1935,
@@ -32,7 +32,7 @@ const config = {
     allow_origin: '*'
   },
   trans: {
-    ffmpeg: ffmpegPath, // Dynamically set the ffmpeg path
+    ffmpeg: ffmpegPath,
     tasks: [
       {
         app: 'live',
@@ -49,8 +49,9 @@ const config = {
       }
     ]
   },
-  logType: 3 // Enable debug logging
+  logType: 3
 };
 
+// Initialize Node Media Server
 const nms = new NodeMediaServer(config);
 nms.run();
